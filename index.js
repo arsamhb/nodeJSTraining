@@ -1,5 +1,14 @@
-const { format } = require("date-fns");
+const logEvent = require("./logEvent");
+const EventEmitter = require('events')
 
-console.log(format(new Date(), "yyyyMMdd\tHH:mm:ss"));
+class MyEmitter extends EventEmitter { };
 
-console.log('hello');
+// initializing the object
+const myEmitter = new MyEmitter();
+
+// add listener for the log event
+myEmitter.on("log", (msg) => logEvent(msg));
+
+/* I should study this .emit */
+myEmitter.emit("log", "arsam wrote this emit");
+//next test
