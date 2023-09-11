@@ -1,4 +1,4 @@
-const fsPromises = require("fs").promises;
+/* const fsPromises = require("fs").promises;
 const path = require("path");
 
 const fileOps = async () => {
@@ -31,4 +31,24 @@ fileOps();
 process.on("uncaughtException", (err) => {
   console.log(`there was an error a uncaught ${err}`);
   process.exit(1);
+});
+ */
+
+const http = require("http");
+const path = require("path");
+const EventEmitter = require("events");
+const logEvent = require("./logEvent");
+
+class Emitter extends EventEmitter {}
+
+const myEmitter = new Emitter();
+
+const PORT = process.env.PORT || 3500;
+
+const server = http.createServer((req, res) => {
+  console.log(req.url, req.method);
+});
+
+server.listen(PORT, () => {
+  console.log(`the server is running on port ${PORT}`);
 });

@@ -1,11 +1,11 @@
 {
   "name": "arsam-node",
   "version": "1.0.0",
-  "description": "index.js",
-  "main": "dir.js",
+  "description": "",
+  "main": "server.js",
   "scripts": {
-    "dev": "nodemon index",
-    "start": "node index"
+    "dev": "nodemon server",
+    "start": "node server"
   },
   "author": "R.",
   "license": "ISC",
