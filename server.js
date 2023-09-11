@@ -38,6 +38,7 @@ const http = require("http");
 const path = require("path");
 const EventEmitter = require("events");
 const logEvent = require("./logEvent");
+const fs = require("fs");
 
 class Emitter extends EventEmitter {}
 
@@ -47,6 +48,17 @@ const PORT = process.env.PORT || 3500;
 
 const server = http.createServer((req, res) => {
   console.log(req.url, req.method);
+
+  let filePath;
+
+  if (req.url === "/" || req.url === "index.html") {
+    res.statusCode = 200;
+    res.setHeader("Content-Type", "text/html");
+    filePath = path.join(__dirname, "views", "index.html");
+    fs.readFile(filePath, "utf8", (err, data) => {
+      res.end(data)
+    });
+  }
 });
 
 server.listen(PORT, () => {
