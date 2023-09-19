@@ -1,1 +1,4 @@
 20230918	17:39:05	56d036c5-e46b-4343-ac9d-d4204fb95893	Error	error by CORS	
+20230919	16:26:48	63c20b45-95b6-4414-907c-05c23ca14bdd	SyntaxError	Unexpected token a in JSON at position 13	
+20230919	16:26:57	2dba9676-e0d3-4334-bf6b-fcf82d65c7ec	SyntaxError	Unexpected token a in JSON at position 13	
+20230919	16:27:09	fdd564ef-504c-4b96-8785-bdc17a28c3ec	SyntaxError	Unexpected token b in JSON at position 19	

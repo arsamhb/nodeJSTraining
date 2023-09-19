@@ -3,6 +3,9 @@ const app = express();
 const cors = require("cors");
 const path = require("path");
 const { reqLogger, errLogger } = require("./middleware/loggers");
+const rootRouter = require("./routes/root");
+const subdirRouter = require("./routes/subdir");
+const employeeRouter = require("./routes/api/employees")
 
 const PORT = process.env.PORT || 3500;
 
@@ -17,6 +20,7 @@ const PORT = process.env.PORT || 3500;
 app.use(reqLogger);
 
 //CROSS ORIGIN RESOURCE SHARING
+// go and study some docs on this
 const whitelist = [];
 const corsOption = {
   origin: (origin, callback) => {
@@ -34,50 +38,24 @@ const corsOption = {
 // actually using this CORS we can specify that
 // which url can interact with us
 app.use(cors(corsOption));
+
 // this is a builtin middle ware for express
 // that encode data from form
 // 'content-type: application/x-www-form-urlencoded'
 app.use(express.urlencoded({ extended: false }));
-// for taking json
+// for serving json
 app.use(express.json());
 // for serving static files like css images and...
-app.use(express.static(path.join(__dirname, "public")));
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "index.html"));
-});
+app.use("/", express.static(path.join(__dirname, "public")));
+app.use("/subdir", express.static(path.join(__dirname, "public"))); 
 
-app.get("/new-page(.html)?", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "new-page.html"));
-});
-
-app.get("/old-page(.html)?", (req, res) => {
-  res.redirect(301, "/new-page.html");
-});
-
-app.get(
-  "/hello",
-  (req, res, next) => {
-    console.log("diiing");
-    next();
-  },
-  (req, res) => {
-    res.send("HEllo World!");
-  }
-);
-
-const one = (req, res, next) => {
-  console.log("one");
-  next();
-};
-const two = (req, res, next) => {
-  console.log("two");
-  next();
-};
-const three = (req, res, next) => {
-  console.log("three");
-  res.send("finished");
-};
-app.get("/chain.html", [one, two, three]);
+// a middleware to handle routing
+// handeling root directory
+app.use("/", rootRouter);
+// handeling subdirectory
+app.use("/subdir", subdirRouter);
+// handeling API directory
+app.use("/employees", employeeRouter)
 
 app.all("*", (req, res) => {
   res.status(404);
