@@ -6,6 +6,7 @@ const { reqLogger, errLogger } = require("./middleware/loggers");
 const rootRouter = require("./routes/root");
 const subdirRouter = require("./routes/subdir");
 const employeeRouter = require("./routes/api/employees")
+const corsOption = require("./config/corsOption")
 
 const PORT = process.env.PORT || 3500;
 
@@ -19,25 +20,9 @@ const PORT = process.env.PORT || 3500;
 //  in custom middlewares
 app.use(reqLogger);
 
-//CROSS ORIGIN RESOURCE SHARING
-// go and study some docs on this
-const whitelist = [];
-const corsOption = {
-  origin: (origin, callback) => {
-    console.log(origin);
-    // !origin should be removed
-    if (whitelist.indexOf(origin) !== -1 || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error("error by CORS"));
-    }
-  },
-  optionSuccessStatus: 200,
-  // origin: "*",
-};
 // actually using this CORS we can specify that
 // which url can interact with us
-app.use(cors(corsOption));
+// app.use(cors(corsOption));
 
 // this is a builtin middle ware for express
 // that encode data from form

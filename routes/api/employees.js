@@ -1,36 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const data = {};
-// it is something like connecting DB to code
-data.employees = require("../../data/employees.json");
-
+const employeeController = require("../../controllers/employeeController")
 router
   .route("/")
-  .get((req, res) => {
-    res.json(data.employees);
-  })
-  .post((req, res) => {
-    // here we just handling params not coing an actuall api
-    res.json({
-      "firstname": req.body.firstname,
-      "lastname": req.body.lastname,
-    });
-  })
-  .put((req, res) => {
-    // here we just handling params not coing an actuall api
-    res.json({
-      "firstname": req.body.firstname,
-      "lastname": req.body.lastname,
-    });
-  })
-  .delete((req, res) => {
-    res.json({ "id": req.body.ip });
-  });
+  .get(employeeController.getAllEmployee)
+  .post(employeeController.postEmployee)
+  .put(employeeController.updateEmployee)
+  .delete(employeeController.deletEmployee);
 
 router.route("/:id")
-  .get((req,res)=>{
-    res.json({
-        "id": req.params.id
-    })
-  })
+  .get(employeeController.getEmployee)
+  
 module.exports = router;

@@ -2,3 +2,24 @@
 20230919	16:26:48	63c20b45-95b6-4414-907c-05c23ca14bdd	SyntaxError	Unexpected token a in JSON at position 13	
 20230919	16:26:57	2dba9676-e0d3-4334-bf6b-fcf82d65c7ec	SyntaxError	Unexpected token a in JSON at position 13	
 20230919	16:27:09	fdd564ef-504c-4b96-8785-bdc17a28c3ec	SyntaxError	Unexpected token b in JSON at position 19	
+20230923	17:16:25	666c84bb-cfb9-469b-b1ed-c915f7e9468c	ReferenceError	whitelist is not defined	
+20230923	17:16:25	4f4a0c1c-bda1-4dc2-8700-434780ead4e2	ReferenceError	whitelist is not defined	
+20230923	17:16:50	dc79d7e2-e64c-49f7-abef-552659a1cea7	ReferenceError	whitelist is not defined	
+20230923	17:17:54	1aa18a23-8962-445c-9b3a-bb71b68bc74b	ReferenceError	whitelist is not defined	
+20230923	17:17:54	cba299e1-79c6-4bb5-97c3-8af2180ec571	ReferenceError	whitelist is not defined	
+20230923	17:17:54	28da4ff1-6cab-4720-bc9c-d073e953fc81	ReferenceError	whitelist is not defined	
+20230923	17:17:54	0080f133-5e17-43fa-a2b1-f669d45d33bb	ReferenceError	whitelist is not defined	
+20230923	17:17:55	7d9d26a2-79b4-417b-b14b-e67b128914ea	ReferenceError	whitelist is not defined	
+20230923	17:17:55	40ab8322-642c-45fa-a52b-4eeddd6db54e	ReferenceError	whitelist is not defined	
+20230923	17:17:55	53393328-cbad-4ece-bba5-797d34bc173b	ReferenceError	whitelist is not defined	
+20230923	17:17:55	605b40e8-7f14-42f7-a2a7-9af29ecc7c51	ReferenceError	whitelist is not defined	
+20230923	17:18:36	2b9729f3-1353-4448-b8c1-618f12df8202	ReferenceError	whitelist is not defined	
+20230923	17:18:36	cfe413ff-ef9b-44a3-836d-68c790a0098c	ReferenceError	whitelist is not defined	
+20230923	17:19:00	6400c8f5-8986-4b88-a109-4f31235f7132	ReferenceError	whitelist is not defined	
+20230923	17:19:00	3e2f4090-8d59-4d41-9ad6-a22f13171fa3	ReferenceError	whitelist is not defined	
+20230923	17:19:13	395725d0-79a7-4169-aaaf-af0f910360af	ReferenceError	whitelist is not defined	
+20230923	17:19:13	3ea6a5ab-2c2d-4825-91ab-4c91cfaa8990	ReferenceError	whitelist is not defined	
+20230923	17:20:08	77264bbf-40f2-4d22-abba-d86464982d44	ReferenceError	whitelist is not defined	
+20230923	17:20:08	e7fa4b14-ef81-4a4c-8c19-2316764169e0	ReferenceError	whitelist is not defined	
+20230923	17:28:30	45e328e6-ba5d-4da1-9e42-98aeea8b2360	SyntaxError	Unexpected token f in JSON at position 1	
+20230923	17:29:04	d3879ae6-2719-44c5-8a78-3fe396eb1d1a	SyntaxError	Unexpected token f in JSON at position 1	
