@@ -42,7 +42,7 @@ const updateEmployee = (req, res) => {
   );
   res.json(data.employees);
 };
-const deletEmployee = (req, res) => {
+const deleteEmployee = (req, res) => {
   const deletedEmployee = data.employees.find(
     (emp) => emp.id === parseInt(req.body.id)
   );
@@ -70,7 +70,7 @@ const getEmployee = (req, res) => {
 module.exports = {
   getAllEmployee,
   getEmployee,
-  deletEmployee,
+  deleteEmployee,
   updateEmployee,
   postEmployee,
 };

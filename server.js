@@ -7,6 +7,8 @@ const rootRouter = require("./routes/root");
 const subdirRouter = require("./routes/subdir");
 const employeeRouter = require("./routes/api/employees")
 const corsOption = require("./config/corsOption")
+const registerRouter = require("./routes/register")
+const loginRouter = require("./routes/login")
 
 const PORT = process.env.PORT || 3500;
 
@@ -35,11 +37,15 @@ app.use("/", express.static(path.join(__dirname, "public")));
 app.use("/subdir", express.static(path.join(__dirname, "public"))); 
 
 // a middleware to handle routing
-// handeling root directory
+// handling root directory
 app.use("/", rootRouter);
-// handeling subdirectory
+// handling registration
+app.use("/register", registerRouter);
+// handling login
+app.use("/auth", loginRouter);
+// handling subdirectory
 app.use("/subdir", subdirRouter);
-// handeling API directory
+// handling API directory
 app.use("/employees", employeeRouter)
 
 app.all("*", (req, res) => {
