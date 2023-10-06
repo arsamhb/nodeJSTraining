@@ -1,4 +1,3 @@
-// a reacty way to get connected to db
 const data = {
   employees: require("../model/employees.json"),
   setEmployees: function (data) {
@@ -7,6 +6,7 @@ const data = {
 };
 const getAllEmployee = (req, res) => {
   res.json(data.employees);
+  console.log("logloglog");
 };
 const postEmployee = (req, res) => {
   const newEmployee = {
@@ -14,13 +14,11 @@ const postEmployee = (req, res) => {
     firstname: req.body.firstname,
     lastname: req.body.lastname,
   };
-
   if (!newEmployee.firstname || !newEmployee.lastname) {
     return res
       .status(400)
       .json({ message: "first and last name are both required." });
   }
-
   data.setEmployees([...data.employees, newEmployee]);
   res.json(data.employees);
 };

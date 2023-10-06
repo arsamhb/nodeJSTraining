@@ -23,3 +23,8 @@
 20230923	17:20:08	e7fa4b14-ef81-4a4c-8c19-2316764169e0	ReferenceError	whitelist is not defined	
 20230923	17:28:30	45e328e6-ba5d-4da1-9e42-98aeea8b2360	SyntaxError	Unexpected token f in JSON at position 1	
 20230923	17:29:04	d3879ae6-2719-44c5-8a78-3fe396eb1d1a	SyntaxError	Unexpected token f in JSON at position 1	
+20231006	16:20:35	3c0d6bd5-c602-4a86-a8e4-a98fae7ff19d	SyntaxError	Unexpected token e in JSON at position 0	
+20231006	16:20:45	e70a0c09-8f96-4749-b38f-b2f90e21f76f	SyntaxError	Unexpected token e in JSON at position 0	
+20231006	16:37:31	b2448403-b6b3-400d-8fe8-7848da5daced	TypeError	name argument is required to req.get	
+20231006	16:37:34	bf712f46-7d3c-41b5-993c-6bcf64e7d66a	TypeError	name argument is required to req.get	
+20231006	16:37:38	53a6c4bf-b0f0-46e9-b346-502c1302dce4	TypeError	name argument is required to req.get	

@@ -5,10 +5,14 @@ const path = require("path");
 const { reqLogger, errLogger } = require("./middleware/loggers");
 const rootRouter = require("./routes/root");
 const subdirRouter = require("./routes/subdir");
-const employeeRouter = require("./routes/api/employees")
-const corsOption = require("./config/corsOption")
-const registerRouter = require("./routes/register")
-const loginRouter = require("./routes/login")
+const employeeRouter = require("./routes/api/employees");
+const corsOption = require("./config/corsOption");
+const registerRouter = require("./routes/register");
+const loginRouter = require("./routes/auth");
+const cookieParser = require("cookie-parser");
+const verifyJWT = require("./middleware/verifyJWT");
+const refreshRouter = require("./routes/refresh");
+const credentials = require("./middleware/credentials");
 
 const PORT = process.env.PORT || 3500;
 
@@ -26,15 +30,23 @@ app.use(reqLogger);
 // which url can interact with us
 // app.use(cors(corsOption));
 
+// Handle options credentials check - before CORS
+// and fetch cookies credentials requirement
+app.use(credentials);
+// cross origin resource sharing
+app.use(cors(corsOption));
+
 // this is a builtin middle ware for express
 // that encode data from form
 // 'content-type: application/x-www-form-urlencoded'
 app.use(express.urlencoded({ extended: false }));
 // for serving json
 app.use(express.json());
+//middleware for cookies
+app.use(cookieParser());
 // for serving static files like css images and...
 app.use("/", express.static(path.join(__dirname, "public")));
-app.use("/subdir", express.static(path.join(__dirname, "public"))); 
+app.use("/subdir", express.static(path.join(__dirname, "public")));
 
 // a middleware to handle routing
 // handling root directory
@@ -43,10 +55,13 @@ app.use("/", rootRouter);
 app.use("/register", registerRouter);
 // handling login
 app.use("/auth", loginRouter);
+app.use("/refresh", require("./routes/refresh"));
+app.use("/logout", require("./routes/logout"));
+app.use(verifyJWT);
 // handling subdirectory
 app.use("/subdir", subdirRouter);
 // handling API directory
-app.use("/employees", employeeRouter)
+app.use("/employees", employeeRouter);
 
 app.all("*", (req, res) => {
   res.status(404);
