@@ -1,1 +1,29 @@
-[{"user":"arsam","pwd":"$2b$10$u6OpgelfeOEn3.L4SYjTZelqS9j.mvdcfqxPSa3QcNj3qM9Elrnfq","refreshToken":" "}]
+[
+    {
+        "user": "arsam",
+        "roles": {
+            "Admin": 9000,
+            "Editor": 8000,
+            "User": 7000
+        },
+        "pwd": "$2b$10$ADAa1LOzYezqIGLNOdZMbOnLYA7ASYaLX8whwqg2DQzptGPqZG2Bi",
+        "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFyc2FtIiwiaWF0IjoxNjk2NjcyNjcwLCJleHAiOjE2OTY3NTkwNzB9.RdkMUzOZbtm2MaaRwavYocrAhi0DgeYrm565ka2lgGo"
+    },
+    {
+        "user": "ali",
+        "roles": {
+            "Editor": 8000,
+            "User": 7000
+        },
+        "pwd": "$2b$10$PQLe15qTa/1ydyfODPGSCuNBmw3SB4sgtt2KuB81Y4DZcYcrKzoO2",
+        "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsaSIsImlhdCI6MTY5NjY3MjY4MSwiZXhwIjoxNjk2NzU5MDgxfQ.W_2yRx-klPiKAyITiQbkDUL5YDQj3FXOYZqKA-sv4l8"
+    },
+    {
+        "user": "hesam",
+        "roles": {
+            "User": 7000
+        },
+        "pwd": "$2b$10$YiTfQccE.B418CBZhqLa4OSd9fWHIbMsBYaNHJimRD6U1m99VU2BG",
+        "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imhlc2FtIiwiaWF0IjoxNjk2NjcyNjk2LCJleHAiOjE2OTY3NTkwOTZ9.LpkRGVYyKkT9hKbTfYy_lQ-SfA9qaeivutjHmiqBfis"
+    }
+]

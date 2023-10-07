@@ -5,7 +5,6 @@ const userDB = {
   },
 };
 const bcrypt = require("bcrypt");
-
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const path = require("path");
@@ -24,8 +23,14 @@ const handleLogin = async (req, res) => {
   const match = await bcrypt.compare(pwd, foundUser.pwd);
   // create JWT
   if (match) {
+    const roles = Object.values(foundUser.roles);
     const accessToken = jwt.sign(
-      { username: foundUser.user },
+      { userInfo : 
+        { 
+          username: foundUser.user, 
+          roles: roles 
+        } 
+      },
       process.env.ACCESS_TOKEN_SECRET,
       { expiresIn: "300s" }
     );
@@ -39,7 +44,7 @@ const handleLogin = async (req, res) => {
       (person) => person.user !== foundUser.user
     );
     const currentUser = { ...foundUser, refreshToken };
-    userDB.setUser([ ...otherUsers, currentUser ]);
+    userDB.setUser([...otherUsers, currentUser]);
     await fsPromises.writeFile(
       path.join(__dirname, "..", "model", "users.json"),
       JSON.stringify(userDB.users)
@@ -48,7 +53,7 @@ const handleLogin = async (req, res) => {
       // an httpOnly cookie is not availabe to the js
       // and its the security thing in here
       httpOnly: true,
-      sameSite: 'None',
+      sameSite: "None",
       secure: true,
       maxAge: 24 * 60 * 60 * 1000,
     });

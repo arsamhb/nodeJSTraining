@@ -11,7 +11,7 @@ const handleRefreshToken = (req, res) => {
   const cookies = req.cookies;
   // first we check that we have the cookie and it has property of jwt
   const refreshToken = cookies.jwt;
-  
+
   if (!refreshToken) return res.sendStatus(401);
   console.log(`this is comming from cookie ${refreshToken}`);
 
@@ -28,8 +28,11 @@ const handleRefreshToken = (req, res) => {
       console.log("inja cgetor");
       return res.sendStatus(403);
     }
+    const roles = Object.values(foundUser.roles);
     const accessToken = jwt.sign(
-      { username: decoded.username },
+      {
+        userInfo: { username: decoded.username, roles: roles },
+      },
       process.env.ACCESS_TOKEN_SECRET,
       { expiresIn: "300s" }
     );
