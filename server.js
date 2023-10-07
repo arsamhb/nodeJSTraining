@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -13,8 +14,14 @@ const cookieParser = require("cookie-parser");
 const verifyJWT = require("./middleware/verifyJWT");
 const refreshRouter = require("./routes/refresh");
 const credentials = require("./middleware/credentials");
+const mongoose = require("mongoose")
+const connectDB = require("./config/dbConn")
 
 const PORT = process.env.PORT || 3500;
+
+// connect to mongo db
+connectDB();
+
 
 //PAY ATTENTION THIS SET OF AHNDLERS ACT LIKE A WATER FALL
 //SO THESE MIDDLEWARES IN HERE WILL APPLY TO ALL THE DATAS
@@ -78,4 +85,7 @@ app.all("*", (req, res) => {
 // handler at then end to handle any erro that occured above
 app.use(errLogger);
 
-app.listen(PORT, () => console.log(`the server is running on port ${PORT}`));
+mongoose.connection.once('open', () => {
+  console.log('connected to mongoDB')
+  app.listen(PORT, () => console.log(`the server is running on port ${PORT}`));
+})
