@@ -1,12 +1,12 @@
-const usersDB = {
-  users: require("../model/users.json"),
-  setUsers: function (data) {
-    this.users = data;
-  },
-};
-
-const fsPromises = require("fs").promises;
-const path = require("path");
+// const usersDB = {
+//   users: require("../model/users.json"),
+//   setUsers: function (data) {
+//     this.users = data;
+//   },
+// };
+// const fsPromises = require("fs").promises;
+// const path = require("path");
+const User = require("../model/User");
 const bcrypt = require("bcrypt");
 
 const handleNewUser = async (req, res) => {
@@ -16,22 +16,30 @@ const handleNewUser = async (req, res) => {
       .status(400)
       .json({ message: "username and password are both required" });
   // checking duplicate username
-  const duplicate = usersDB.users.find((person) => person.user === user);
+  //const duplicate = usersDB.users.find((person) => person.user === user);
+  const duplicate = await User.findOne({ username: user }).exec();
   if (duplicate) return res.sendStatus(409);
   try {
     // encrypt password
     const hashedPwd = await bcrypt.hash(pwd, 10);
     // CREATING THE NEWUSER
-    const newUser = {
-      user: user,
-      roles: { User: 7000 },
-      pwd: hashedPwd,
-    };
-    usersDB.setUsers([...usersDB.users, newUser]);
-    await fsPromises.writeFile(
-      path.join(__dirname, "..", "model", "users.json"),
-      JSON.stringify(usersDB.users)
-    );
+    // const newUser = {
+    //   user: user,
+    //   roles: { User: 7000 },
+    //   pwd: hashedPwd,
+    // };
+    // usersDB.setUsers([...usersDB.users, newUser]);
+    // await fsPromises.writeFile(
+    //   path.join(__dirname, "..", "model", "users.json"),
+    //   JSON.stringify(usersDB.users)
+    // );
+    // create and store a new user
+    const result = await User.create({
+      "username": user,
+      "password": hashedPwd,
+    });
+    console.log("new user created");
+    console.log(result);
     //console.log(usersDB.users);
     res.status(201).json({ message: `user ${newUser.user} created.` });
   } catch (err) {
