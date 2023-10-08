@@ -1,26 +1,28 @@
-const userDB = {
-  users: require("../model/users.json"),
-  setUser: function (data) {
-    this.users = data;
-  },
-};
+// const userDB = {
+//   users: require("../model/users.json"),
+//   setUser: function (data) {
+//     this.users = data;
+//   },
+// };
 const jwt = require("jsonwebtoken");
-
-const handleRefreshToken = (req, res) => {
+const User = require("../model/User")
+const handleRefreshToken = async (req, res) => {
   const cookies = req.cookies;
   // first we check that we have the cookie and it has property of jwt
   const refreshToken = cookies.jwt;
-
+  console.log(cookies);
   if (!refreshToken) return res.sendStatus(401);
-  console.log(`this is comming from cookie ${refreshToken}`);
+  //console.log(`this is comming from cookie ${refreshToken}`);
 
-  const foundUser = userDB.users.find(
-    (user) => user.refreshToken === refreshToken
-  );
+  // const foundUser = userDB.users.find(
+  //   (user) => user.refreshToken === refreshToken
+  // );
+  const foundUser = await User.findOne({refreshToken}).exec();
   if (!foundUser) {
-    console.log("nemiad inja");
+    //console.log("nemiad inja");
     return res.sendStatus(403); //forbidden
   }
+  
   jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, decoded) => {
     if (err || foundUser.user !== decoded.username) {
       console.log(decoded);

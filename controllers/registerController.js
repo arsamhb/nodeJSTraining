@@ -11,10 +11,12 @@ const bcrypt = require("bcrypt");
 
 const handleNewUser = async (req, res) => {
   const { user, pwd } = req.body;
-  if (!user || !pwd)
+  if (!user || !pwd) {
+    console.log(req.body);
     return res
       .status(400)
       .json({ message: "username and password are both required" });
+  }
   // checking duplicate username
   //const duplicate = usersDB.users.find((person) => person.user === user);
   const duplicate = await User.findOne({ username: user }).exec();
@@ -35,13 +37,13 @@ const handleNewUser = async (req, res) => {
     // );
     // create and store a new user
     const result = await User.create({
-      "username": user,
-      "password": hashedPwd,
+      username: user,
+      password: hashedPwd,
     });
     console.log("new user created");
-    console.log(result);
+    console.log(`it is result ->>>>>>> ${result}`);
     //console.log(usersDB.users);
-    res.status(201).json({ message: `user ${newUser.user} created.` });
+    res.status(201).json({ message: `user ${user} created.` });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
